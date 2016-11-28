@@ -1,0 +1,39 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+#define LL long long
+
+int N, r;
+int b[200010];
+
+class poi{
+	public:
+	int x, y, t;
+}P[200010];
+
+bool cmpx(const poi &A, const poi &B){
+	return A.x > B.x || (A.x == B.x && A.y > B.y);
+}
+
+int main(){
+	freopen("C.in", "r", stdin);
+	freopen("C.out", "w", stdout);
+	scanf("%d", &N);
+	for (int i = 1; i <= N; i++){
+		scanf("%d%d", &P[i].x, &P[i].y);
+		P[i].t = i;
+	}
+	sort(P + 1, P + N + 1, cmpx);
+	b[r = 1] = 1;
+	for (int i = 2; i <= N; i++)
+		if (P[i].y > P[b[r]].y || (P[i].x == P[b[r]].x && P[i].y == P[b[r]].y))
+			b[++r] = i;
+	for (int i = 1; i <= r; i++)
+		b[i] = P[b[i]].t;
+	sort(b + 1, b + r + 1);
+	for (int i = 1; i <= r; i++){
+		printf("%d", b[i]);
+		if (i < N)printf(" ");
+		else printf("\n");
+	}
+}
