@@ -34,10 +34,13 @@ int calc(int i, int j, int k){
 	double xk = 1.0/P[k].x;
 	double yk = 1.0/P[k].y;
 	double tx = (xj - xi) * (yk - yi) - (xk - xi) * (yj - yi);
-	LL res = (LL)(P[i].x * P[k].x - P[j].x * P[k].x) * (P[i].y * P[j].y - P[j].y * P[k].y);
-	res -= (LL)(P[i].x * P[j].x - P[j].x * P[k].x) * (P[i].y * P[k].y - P[j].y * P[k].y);
-	int tt = sgn(P[i].x * P[j].x * P[k].x) *sgn(P[i].y * P[j].y * P[k].y);
-	return sgn(res) * tt;
+	LL t1 = P[i].x * P[k].x - P[j].x * P[k].x;
+	LL t2 = P[i].y * P[j].y - P[j].y * P[k].y;
+	LL t3 = P[i].x * P[j].x - P[j].x * P[k].x;
+	LL t4 = P[i].y * P[k].y - P[j].y * P[k].y;
+	LL res = sgn(t1 * t2 - t3 * t4);
+	int tt = sgn((LL)P[i].x * P[j].x * P[k].x) *sgn((LL)P[i].y * P[j].y * P[k].y);
+	return res * tt;
 }
 
 bool better(int i, int j){
@@ -61,12 +64,12 @@ int main(){
 	for (int i = 2; i <= N; i++){
 		if (P[i].x == P[b[r]].x && P[i].y == P[b[r]].y)
 			continue;
+		if (better(b[r], i))
+			continue;
 		while (r > 1 && calc(b[r - 1], b[r], i) < 0)
 			b[r--] = 0;
 		b[++r] = i;
 	}
-	while (r > 1 && better(b[r - 1], b[r]))
-		b[r--] = 0;
 	for (int i = 1; i <= r; i++)
 		Hash.insert(P[b[i]]);
 	r = 0;
