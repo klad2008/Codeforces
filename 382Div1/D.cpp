@@ -13,8 +13,6 @@ class line{
 bitset <4000> a[2000];
 
 int main(){
-	freopen("D.in", "r", stdin);
-	freopen("D.out", "w", stdout);
 	scanf("%d%d", &N, &M);
 	for (int i = 1; i <= M; i++){
 		int x, y;
@@ -38,7 +36,7 @@ int main(){
 				a[j] ^= a[i];
 	}
 	for (int i = 1; i <= M; i++)
-		if (a[P[i].x][N + P[i].y])
+		if (a[P[i].y][N + P[i].x])
 			printf("NO\n");
 		else printf("YES\n");
 }
