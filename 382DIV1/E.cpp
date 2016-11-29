@@ -26,8 +26,6 @@ bool cmpt(const rec &A, const rec &B){
 }
 
 int main(){
-	freopen("E.in", "r", stdin);
-	freopen("E.out", "w", stdout);
 	scanf("%d%d", &N, &M);
 	REMAIN = 2 * (N - 1) * N / 2;
 	for (int i = 1; i <= M; i++){

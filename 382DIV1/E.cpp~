@@ -26,8 +26,11 @@ bool cmpt(const rec &A, const rec &B){
 }
 
 int main(){
+<<<<<<< HEAD
 	freopen("E.in", "r", stdin);
 	freopen("E.out", "w", stdout);
+=======
+>>>>>>> e469030ebf23ee598cb01f3a30a786fe5c8a0a48
 	scanf("%d%d", &N, &M);
 	REMAIN = 2 * (N - 1) * N / 2;
 	for (int i = 1; i <= M; i++){
@@ -72,6 +75,10 @@ int main(){
 			ans[y][x] = 'L';
 			j++;
 		}
+		if (P[i].A != P[i].B){
+			printf("no\n");
+			return 0;
+		}
 	}
 	for (int i = 1; i <= N; i++)
 		for (int j = 1; j <= N; j++)
@@ -82,11 +89,15 @@ int main(){
 	sort(s + 1, s + N + 1, cmpv);
 	sort(P + 1, P + N + 1, cmpt);
 	for (int i = 1; i <= M; i++)
-		if (P[i].B != s[i]){
+		if (P[i].A != s[i]){
 			printf("no\n");
 			return 0;
 		}
 	printf("yes\n");
 	for (int i = 1; i <= N; i++)
 		printf("%s\n", ans[i] + 1);
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> e469030ebf23ee598cb01f3a30a786fe5c8a0a48

@@ -1,6 +1,0 @@
-while
-	./mk
-	echo ./C
-	./C_
-	diff C.out C_.out
-do :; done
